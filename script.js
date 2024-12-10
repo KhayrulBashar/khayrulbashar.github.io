@@ -38,13 +38,13 @@ $(document).ready(function () {
   // Scroll up Button script end
 
   // animation Script for display
-  const animationScript = ["I'm a Full-time Freelancer", "I'm a Level 1 seller on Fiverr", "I'm a Web Analytics Expert", "My expertise in Facebook Pixel Setup", "My expertise in Conversion API Setup", "My expertise in Conversion Tracking Setup", "My expertise in Server Side Tracking"];
+  const animationScript = ["I'm a Full-time Freelancer", "I'm a Level 1 Seller on Fiverr", "I'm a Web Analytics Expert", "My expertise in Facebook Pixel Setup", "My expertise in Conversion API Setup", "My expertise in Google Analytics 4 Setup", "My expertise in GA4 Custom Report Creation", "My expertise in Google Ads Conversion Tracking","My expertise in Enhanced Conversion issue fix", "My expertise in Google Consent Mode V2", "My expertise in Server Side Tracking"];
 
   // Typing animation script start
   new Typed(".typing", {
     strings: animationScript,
     typeSpeed: 100,
-    backSpeed: 60,
+    backSpeed: 20,
     loop: true,
   });
 
