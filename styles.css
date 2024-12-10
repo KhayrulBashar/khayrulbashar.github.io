@@ -159,9 +159,7 @@ html {
 .home .home-content .web {
   margin-right: 25px;
 }
-.home .home-content{
-  margin-left: 65px;
-}
+
 .home .home-content a:hover {
   color: white;
   background: #000;
