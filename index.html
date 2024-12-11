@@ -15,6 +15,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "kFbZR_ZhMStIJ4AI5",
+        });
+    })();
+</script>
 </head>
 <body>
     <!-- Scroll Button start -->
@@ -381,25 +391,27 @@
                 </div>
                 <div class="column right">
                     <div class="text">Message me</div>
-                    <form action="send_mail.php" method="post">
+                    <form id="contactForm">
                         <div class="fields">
                             <div class="field name">
-                                <input type="text" placeholder="Name" name="name" required>
+                                <input type="text" id="name" placeholder="Enter Full Name" name="name" required>
                             </div>
                             <div class="field email">
-                                <input type="email" placeholder="Email" name="email" required>
+                                <input type="email" id="email" placeholder="Enter Email" name="email" required>
                             </div>
                         </div>
                         <div class="field">
-                            <input type="text" placeholder="Subject" name="subject" required>
+                            <input type="text" id="subject" placeholder="Service Topic" name="subject" required>
                         </div>
                         <div class="field textarea">
-                            <textarea cols="30" rows="10" placeholder="Describe Project..." name="message" required></textarea>
+                            <textarea id="message" cols="30" rows="10" placeholder="Describe Project..." name="message" required></textarea>
                         </div>
                         <div class="button">
                             <button type="submit">Send Message <i class="fas fa-paper-plane"></i></button>
                         </div>
-                    </form>
+                    </form> <br>
+                    <!-- Success Message with Animation -->
+                    <p id="successMessage"></p>
                 </div>
                 
             </div>
@@ -416,7 +428,42 @@
     </footer>
     <!-- footer section end -->
     <!-- External Javascript File start-->
-    <script src="script.js" async></script>
+    <script src="./script.js" async></script>
     <!-- External Javascript File end-->
+   
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script> 
+    <script>
+        // EmailJS ইন্সট্যান্স ইনিশিয়ালাইজ
+        emailjs.init('kFbZR_ZhMStIJ4AI5'); // এখানে 'your_user_id' আপনার EmailJS অ্যাকাউন্টের user ID হবে
+        
+        // ফর্ম সাবমিট হলে
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // ইনপুট ফিল্ড থেকে ডেটা সংগ্রহ
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const subject = document.getElementById('subject');
+            const message = document.getElementById('message');
+            
+            // EmailJS মাধ্যমে ইমেইল পাঠানো
+            emailjs.sendForm('service_kb', 'template_2k4a0pc', this)
+            .then(function(response) {
+                console.log('Success:', response);
+                var msg = document.getElementById('successMessage');
+                alert("Could you please check your email inbox?\nI will reach out to you very soon.");
+                msg.textContent = 'Form Submitted Successfully!'; 
+                msg.style.color = '#4CAF50'; 
+                msg.style.fontWeight = "bold";
+                name.value = '';
+                email.value = "";
+                subject.value = "";
+                message.value = "";
+            }, function(error) {
+                console.log('Error:', error);
+            });
+        });
+    </script>
+    
 </body>
 </html>
